@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties>
+        <property name="url" value="jdbc:mysql://localhost:3306/ssm?useSSL=false&amp;characterEncoding=utf8&amp;serverTimezone=US/Eastern"></property>
+        <property name="username" value="root"></property>
+        <property name="password" value="password"></property>
+        <property name="driver" value="com.mysql.cj.jdbc.Driver"></property>
+    </properties>
+
+    <typeAliases>
+<!--        <package name="com.bassomillo.entity"/>-->
+        <typeAlias type="com.bassomillo.entity.User" alias="user"/>
+        <typeAlias type="com.bassomillo.dataSource.DruidDataSourceFactory" alias="DRUID"/>
+    </typeAliases>
+
+    <environments default="test">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+
+        <environment id="test">
+            <transactionManager type="JDBC"/>
+            <dataSource type="DRUID">
+                <property name="druid.driverClass" value="${driver}"/>
+                <property name="druid.url" value="${url}"/>
+                <property name="druid.username" value="${username}"/>
+                <property name="druid.password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <mapper resource="mapper/UserMapper.xml"/>
+        <mapper class="com.bassomillo.mapper.AdminMapper"/>
+        <mapper class="com.bassomillo.mapper.UserMapper"/>
+    </mappers>
+
+</configuration>

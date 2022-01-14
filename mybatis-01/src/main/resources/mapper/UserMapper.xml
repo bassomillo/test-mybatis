@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bassomillo.mapper.UserMapper">
+    <insert id="InsertUser">
+        insert into user (id,username,password) values (#{id},#{username},#{password})
+    </insert>
+    <update id="UpdateUser">
+        update user set username = #{username}, password = #{password} where id =#{id}
+    </update>
+    <delete id="DeleteUser">
+        delete from user where id = #{id}
+    </delete>
+    <select id="UserSelect" resultType="user">
+        select * from user
+    </select>
+
+    <select id="UserSelectById" resultType="com.bassomillo.entity.User">
+        select * from user where id = #{id}
+    </select>
+    <select id="UserSelect1" resultType="com.bassomillo.entity.User">
+        select * from user where username=#{username} and password = #{password}
+    </select>
+    <select id="UserSelect2" resultType="com.bassomillo.entity.User">
+        select * from user where username=#{username} and password = #{password}
+    </select>
+    <select id="UserSelectByUsername" resultType="com.bassomillo.entity.User">
+        select * from user where username like '%${username1}%'
+    </select>
+
+    <select id="UserSelectByUser" resultType="com.bassomillo.entity.User">
+        select * from user where
+    </select>
+
+
+</mapper>
